@@ -1,0 +1,17 @@
+{
+  "totalScenes": 1,
+  "totalEstimatedDuration": 1,
+  "vfxScenes": 0,
+  "totalLocations": 1,
+  "locations": [
+    "Test Location"
+  ],
+  "characters": [],
+  "approvedScenes": 0,
+  "statusBreakdown": {
+    "Not Shot": 1
+  },
+  "lastUpdated": "2025-10-06",
+  "scriptTitle": "Analyzed Script",
+  "scriptVersion": "1.0.0"
+}
