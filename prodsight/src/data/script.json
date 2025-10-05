@@ -1,0 +1,91 @@
+{
+  "title": "The Last Stand",
+  "version": "1.2",
+  "lastModified": "2024-10-08",
+  "scenes": [
+    {
+      "id": "1",
+      "number": "1",
+      "description": "INT. POLICE STATION - DAY. Detective SARAH enters the bullpen, coffee in hand.",
+      "location": "Police Station Interior",
+      "timeOfDay": "Day",
+      "estimatedDuration": 3,
+      "characters": ["Sarah", "Captain Martinez", "Detective Johnson"],
+      "props": ["Coffee cup", "Case files", "Desk phone"],
+      "vfx": false,
+      "status": "approved",
+      "notes": "Simple dialogue scene, minimal setup required"
+    },
+    {
+      "id": "2",
+      "number": "2",
+      "description": "EXT. WAREHOUSE DISTRICT - NIGHT. Car chase through narrow alleyways.",
+      "location": "Warehouse District",
+      "timeOfDay": "Night",
+      "estimatedDuration": 8,
+      "characters": ["Sarah", "Suspect"],
+      "props": ["Police car", "Suspect vehicle", "Street lights"],
+      "vfx": true,
+      "status": "in_review",
+      "notes": "Complex action sequence, requires stunt coordination and VFX for explosions"
+    },
+    {
+      "id": "3",
+      "number": "3",
+      "description": "INT. SARAH'S APARTMENT - NIGHT. Sarah reviews case files alone.",
+      "location": "Apartment Interior",
+      "timeOfDay": "Night",
+      "estimatedDuration": 4,
+      "characters": ["Sarah"],
+      "props": ["Case files", "Wine glass", "Laptop", "Photos"],
+      "vfx": false,
+      "status": "draft",
+      "notes": "Character development scene, intimate lighting required"
+    },
+    {
+      "id": "4",
+      "number": "4",
+      "description": "EXT. ROOFTOP - DAWN. Final confrontation between Sarah and the antagonist.",
+      "location": "Downtown Rooftop",
+      "timeOfDay": "Dawn",
+      "estimatedDuration": 12,
+      "characters": ["Sarah", "Marcus (Antagonist)", "SWAT Team"],
+      "props": ["Weapons", "Radio equipment", "Helicopter"],
+      "vfx": true,
+      "status": "draft",
+      "notes": "Climactic scene with helicopter, green screen work needed for city backdrop"
+    },
+    {
+      "id": "5",
+      "number": "5",
+      "description": "INT. HOSPITAL ROOM - DAY. Sarah recovers, visited by her partner.",
+      "location": "Hospital Room",
+      "timeOfDay": "Day",
+      "estimatedDuration": 5,
+      "characters": ["Sarah", "Detective Johnson", "Doctor"],
+      "props": ["Hospital bed", "Medical equipment", "Flowers"],
+      "vfx": false,
+      "status": "approved",
+      "notes": "Resolution scene, soft lighting for recovery atmosphere"
+    }
+  ],
+  "totalEstimatedDuration": 32,
+  "totalScenes": 5,
+  "vfxScenes": 2,
+  "locations": [
+    "Police Station Interior",
+    "Warehouse District", 
+    "Apartment Interior",
+    "Downtown Rooftop",
+    "Hospital Room"
+  ],
+  "characters": [
+    "Sarah",
+    "Captain Martinez",
+    "Detective Johnson", 
+    "Suspect",
+    "Marcus (Antagonist)",
+    "SWAT Team",
+    "Doctor"
+  ]
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend API Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background-color: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+        .error { background-color: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+        .info { background-color: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; }
+        button { padding: 10px 20px; margin: 10px 0; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 5px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Frontend API Connection Test</h1>
+    <p>This page tests the exact same API call that the React frontend makes.</p>
+    
+    <button onclick="testGeminiAPI()">🚀 Test Gemini AI Scheduling</button>
+    <button onclick="testHealthAPI()">🏥 Test Backend Health</button>
+    <button onclick="clearResults()">🧹 Clear Results</button>
+    
+    <div id="results"></div>
+
+    <script>
+        function addResult(message, type = 'info') {
+            const results = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.innerHTML = message;
+            results.appendChild(div);
+        }
+
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+        }
+
+        async function testHealthAPI() {
+            addResult('🏥 Testing backend health...', 'info');
+            
+            try {
+                const response = await fetch('http://localhost:5000/api/health');
+                const data = await response.json();
+                
+                if (response.ok) {
+                    addResult(`✅ Backend is healthy: ${data.message}`, 'success');
+                } else {
+                    addResult(`❌ Health check failed: ${response.status}`, 'error');
+                }
+            } catch (error) {
+                addResult(`❌ Cannot connect to backend: ${error.message}`, 'error');
+            }
+        }
+
+        async function testGeminiAPI() {
+            addResult('🚀 Testing Gemini AI scheduling API...', 'info');
+            
+            const constraints = {
+                actor_constraints: {
+                    Maya: {
+                        max_consecutive_days: 3,
+                        preferred_call_times: ['09:00', '10:00']
+                    }
+                },
+                location_preferences: {
+                    'Radio Station': {
+                        setup_time_hours: 2,
+                        weather_dependent: false
+                    }
+                }
+            };
+
+            addResult(`📊 Sending constraints: <pre>${JSON.stringify(constraints, null, 2)}</pre>`, 'info');
+
+            try {
+                const response = await fetch('http://localhost:5000/api/ai/generate_gemini_schedule', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(constraints)
+                });
+
+                addResult(`📡 Response status: ${response.status}`, 'info');
+                addResult(`📋 Response headers: <pre>${JSON.stringify(Object.fromEntries(response.headers.entries()), null, 2)}</pre>`, 'info');
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const responseData = await response.json();
+                addResult(`📊 Full API Response: <pre>${JSON.stringify(responseData, null, 2)}</pre>`, 'info');
+
+                // Check the response structure (same logic as React component)
+                if (!responseData || typeof responseData !== 'object') {
+                    throw new Error('Invalid response format from server');
+                }
+
+                if (responseData.status === 'success' || responseData.status === 'warning') {
+                    const scheduleData = responseData.schedule_data;
+                    
+                    if (scheduleData && scheduleData.daily_schedules) {
+                        addResult(`✅ SUCCESS! Schedule generated with ${scheduleData.total_shooting_days} shooting days`, 'success');
+                        addResult(`🎯 Strategy: ${scheduleData.scheduling_strategy}`, 'success');
+                        addResult(`📅 Daily schedules: ${scheduleData.daily_schedules.length}`, 'success');
+                        
+                        if (responseData.status === 'warning') {
+                            addResult(`⚠️ Warning: ${responseData.message}`, 'info');
+                        }
+                        
+                        // Show first day details
+                        if (scheduleData.daily_schedules.length > 0) {
+                            const firstDay = scheduleData.daily_schedules[0];
+                            addResult(`🎬 Day 1: ${firstDay.location_focus} - ${firstDay.scenes.length} scenes`, 'success');
+                        }
+                    } else {
+                        addResult(`❌ Schedule data missing or invalid structure`, 'error');
+                        addResult(`🔍 Schedule data received: <pre>${JSON.stringify(scheduleData, null, 2)}</pre>`, 'error');
+                    }
+                } else {
+                    addResult(`❌ API returned error status: ${responseData.status}`, 'error');
+                    addResult(`💬 Error message: ${responseData.message}`, 'error');
+                }
+
+            } catch (error) {
+                addResult(`❌ Test failed: ${error.message}`, 'error');
+                console.error('Full error:', error);
+            }
+        }
+
+        // Auto-run health check on page load
+        window.addEventListener('load', () => {
+            addResult('🎬 Frontend API Test Page Loaded', 'info');
+            addResult('Click the buttons above to test the API connections', 'info');
+        });
+    </script>
+</body>
+</html>
