@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { analysisApi } from '../api/endpoints';
+import { analysisApi, Script } from '../api/endpoints';
 import { useNotification } from '../providers/NotificationProvider';
-import { ScriptBreakdownResult } from '../api/aiMock';
 
+// Assuming these are defined somewhere, for now we will use 'any'
 type BudgetForecast = any;
 type TaskAssignmentSuggestion = any;
 type ConflictResolution = any;
 type ProductionReport = any;
+type ScriptBreakdownResult = Script;
 
 
 interface UseAIReturn {

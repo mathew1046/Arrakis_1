@@ -1,4 +1,4 @@
-import { apiClient, ApiResponse } from './client';
+import { apiClient } from './client';
 
 // Type definitions
 export interface User {
@@ -146,23 +146,8 @@ export const budgetApi = {
     apiClient.post('/budget/history', { ...entry, date: new Date().toISOString() }),
 };
 
-export interface ScriptMetrics {
-  totalScenes: number;
-  totalEstimatedDuration: number;
-  vfxScenes: number;
-  totalLocations: number;
-  locations: string[];
-  characters: string[];
-  approvedScenes: number;
-  statusBreakdown: Record<string, number>;
-  lastUpdated: string;
-  scriptTitle: string;
-  scriptVersion: string;
-}
-
 export const scriptApi = {
   getScript: () => apiClient.get<Script>('/script'),
-  getMetrics: () => apiClient.get<ScriptMetrics>('/script/metrics'),
   updateScript: (script: Partial<Script>) => apiClient.put('/script', script),
   updateScene: (sceneId: string, scene: Partial<Scene>) => apiClient.put(`/script/scene/${sceneId}`, scene),
   addScene: (scene: Omit<Scene, 'id'>) => apiClient.post('/script/scenes', scene),
@@ -170,13 +155,6 @@ export const scriptApi = {
   getScene: (sceneId: string) => apiClient.get<Scene>(`/script/scene/${sceneId}`),
   getScriptText: () => apiClient.get<{content: string}>('/script/text'),
   updateScriptText: (content: string) => apiClient.put('/script/text', { content }),
-  uploadPDF: async (file: File): Promise<ApiResponse<{content: string, filename: string, length: number}>> => {
-    const formData = new FormData();
-    formData.append('file', file);
-    console.log('FormData created with file:', file.name);
-    console.log('FormData entries:', Array.from(formData.entries()));
-    return apiClient.post('/script/upload-pdf', formData);
-  },
 };
 
 export const vfxApi = {

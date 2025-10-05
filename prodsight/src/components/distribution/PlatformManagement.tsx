@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
-  Monitor, Plus, Edit3, Eye, DollarSign, Users, TrendingUp,
-  Globe, Star, X
+  Monitor, Plus, Edit3, Trash2, Eye, DollarSign, Users, TrendingUp,
+  Globe, Star, Calendar, CheckCircle, Clock, AlertCircle, X, Save
 } from 'lucide-react';
 import { formatCurrency } from '../../utils/formatters';
 
@@ -71,7 +71,7 @@ export const PlatformManagement: React.FC = () => {
       },
       {
         id: '2',
-        name: 'Amazon Prime',
+        name: 'Amazon Prime Video',
         type: 'streaming',
         status: 'active',
         contractStart: '2024-01-15',
@@ -99,7 +99,7 @@ export const PlatformManagement: React.FC = () => {
         id: '3',
         name: 'Disney+',
         type: 'streaming',
-        status: 'pending',
+        status: 'negotiating',
         contractStart: '',
         contractEnd: '',
         revenue: 0,
@@ -146,84 +146,6 @@ export const PlatformManagement: React.FC = () => {
           email: 'david.kim@hbomax.com',
           phone: '+1-555-0321'
         }
-      },
-      {
-        id: '5',
-        name: 'Apple TV+',
-        type: 'streaming',
-        status: 'pending', // Status in UI will appear as "In Review", custom mapping in the dashboard
-        contractStart: '',
-        contractEnd: '',
-        revenue: 0,
-        views: 0,
-        rating: 0,
-        territories: ['US', 'CA', 'UK', 'EU'],
-        revenueShare: 70,
-        minimumGuarantee: 450000,
-        deliveryDeadline: '2024-04-15',
-        technicalSpecs: {
-          resolution: '4K UHD',
-          format: 'H.265',
-          audioChannels: '5.1 Surround',
-          subtitles: ['EN', 'ES', 'FR', 'IT']
-        },
-        contact: {
-          name: 'Lisa Thompson',
-          email: 'lisa.thompson@apple.com',
-          phone: '+1-555-4567'
-        }
-      },
-      {
-        id: '6',
-        name: 'Paramount+',
-        type: 'streaming',
-        status: 'negotiating',
-        contractStart: '',
-        contractEnd: '',
-        revenue: 0,
-        views: 0,
-        rating: 0,
-        territories: ['US', 'CA'],
-        revenueShare: 65,
-        minimumGuarantee: 350000,
-        deliveryDeadline: '2024-05-01',
-        technicalSpecs: {
-          resolution: '4K UHD',
-          format: 'H.264',
-          audioChannels: '5.1 Surround',
-          subtitles: ['EN', 'ES', 'FR']
-        },
-        contact: {
-          name: 'Robert Wilson',
-          email: 'robert.wilson@paramount.com',
-          phone: '+1-555-7890'
-        }
-      },
-      {
-        id: '7',
-        name: 'Peacock',
-        type: 'streaming',
-        status: 'active',
-        contractStart: '2024-02-15',
-        contractEnd: '2025-02-15',
-        revenue: 180000,
-        views: 50000,
-        rating: 4.0,
-        territories: ['US'],
-        revenueShare: 60,
-        minimumGuarantee: 150000,
-        deliveryDeadline: '2024-02-01',
-        technicalSpecs: {
-          resolution: '4K UHD',
-          format: 'H.264',
-          audioChannels: '5.1 Surround',
-          subtitles: ['EN', 'ES']
-        },
-        contact: {
-          name: 'Jennifer Adams',
-          email: 'jennifer.adams@peacock.com',
-          phone: '+1-555-2345'
-        }
       }
     ];
     setPlatforms(demoPlatforms);
@@ -236,17 +158,6 @@ export const PlatformManagement: React.FC = () => {
     return matchesSearch && matchesStatus;
   });
 
-  // Maps internal status values to display values matching the dashboard
-  const getDisplayStatus = (status: Platform['status'], platformName: string) => {
-    switch (status) {
-      case 'active': return 'Live';
-      case 'pending': return platformName === 'Apple TV+' ? 'In Review' : 'Pending';
-      case 'negotiating': return 'Negotiating';
-      case 'inactive': return 'Inactive';
-      default: return status;
-    }
-  };
-  
   const getStatusColor = (status: Platform['status']) => {
     switch (status) {
       case 'active': return 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300';
@@ -343,7 +254,7 @@ export const PlatformManagement: React.FC = () => {
               className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
             >
               <option value="all">All Status</option>
-              <option value="active">Live</option>
+              <option value="active">Active</option>
               <option value="pending">Pending</option>
               <option value="negotiating">Negotiating</option>
               <option value="inactive">Inactive</option>
@@ -384,7 +295,7 @@ export const PlatformManagement: React.FC = () => {
               
               <div className="flex items-center space-x-2">
                 <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(platform.status)}`}>
-                  {getDisplayStatus(platform.status, platform.name)}
+                  {platform.status}
                 </span>
                 <button
                   onClick={() => setEditingPlatform(platform)}

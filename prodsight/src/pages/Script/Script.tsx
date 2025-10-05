@@ -88,37 +88,14 @@ export const Script: React.FC = () => {
     }
   };
 
-  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (!file) return;
-    
-    if (!file.name.toLowerCase().endsWith('.pdf')) {
-      showError('Please upload a PDF file');
-      return;
-    }
-    
-    try {
+    if (file && file.type === 'application/pdf') {
+      setSelectedFile(file);
       setUploadedFileName(file.name);
-      showSuccess('Uploading PDF and extracting text...');
-      
-      console.log('Uploading file:', file.name, 'Size:', file.size, 'Type:', file.type);
-      
-      // Upload PDF and extract text
-      const response = await scriptApi.uploadPDF(file);
-      
-      console.log('Upload response:', response);
-      
-      if (response.success && response.data.content) {
-        // Display extracted text in the editor
-        setScriptText(response.data.content);
-        setIsEditingScript(true);
-        showSuccess(`PDF uploaded successfully. Extracted ${response.data.length} characters.`);
-      } else {
-        showError('Failed to extract text from PDF');
-      }
-    } catch (error) {
-      console.error('PDF upload error:', error);
-      showError(`Failed to upload PDF: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+    else {
+        showError('Please upload a PDF file.');
     }
   };
 
@@ -132,61 +109,11 @@ export const Script: React.FC = () => {
       const breakdownResult = await breakdownScript(scriptText);
 
       if (breakdownResult) {
-        console.log('Breakdown result:', breakdownResult);
-        
-        // Transform AI breakdown scenes to match the expected Scene interface
-        const transformedScenes = breakdownResult.scenes.map((scene: any, index: number) => ({
-          id: scene.id || `scene_${index + 1}`,
-          scene_number: parseInt(scene.number) || index + 1,
-          title: scene.description || `Scene ${scene.number || index + 1}`,
-          int_ext: (scene.location?.startsWith('INT') ? 'INT' : 'EXT') as 'INT' | 'EXT',
-          day_night: (scene.timeOfDay?.toUpperCase() || 'DAY') as 'DAY' | 'NIGHT' | 'DAWN' | 'DUSK',
-          location: scene.location || 'Unknown Location',
-          estimated_runtime_minutes: scene.estimatedDuration || 1,
-          scene_description: scene.description || '',
-          characters: scene.characters || [],
-          extras: [],
-          props: scene.props || [],
-          wardrobe: [],
-          makeup_hair: [],
-          vehicles_animals_fx: [],
-          set_dressing: [],
-          special_equipment: [],
-          stunts_vfx: [],
-          sound_requirements: [],
-          mood_tone: scene.notes || '',
-          scene_complexity: 'Medium' as 'Low' | 'Medium' | 'High',
-          vfx_required: scene.vfx || false,
-          vfx_details: scene.vfx ? 'VFX required' : 'N/A',
-          scene_status: 'Not Shot' as 'Not Shot' | 'In Progress' | 'Completed' | 'In Review' | 'Approved',
-          notes: scene.notes,
-          // Legacy fields for backward compatibility
-          number: scene.number || (index + 1).toString(),
-          description: scene.description || '',
-          timeOfDay: scene.timeOfDay || 'Day',
-          estimatedDuration: scene.estimatedDuration || 1,
-          vfx: scene.vfx || false,
-          status: 'Not Shot'
-        }));
-        
-        // Transform the breakdown result to match the expected backend structure
-        const scriptUpdate = {
-          scenes: transformedScenes,
-          totalScenes: breakdownResult.summary?.totalScenes || breakdownResult.scenes?.length || 0,
-          totalEstimatedDuration: breakdownResult.summary?.totalDuration || 0,
-          vfxScenes: breakdownResult.summary?.vfxScenes || 0,
-          locations: breakdownResult.summary?.locations || [],
-          characters: breakdownResult.summary?.characters || []
-        };
-        
-        console.log('Script update payload:', scriptUpdate);
-        
-        await updateScript(scriptUpdate);
+        await updateScript(breakdownResult);
         showSuccess('Script breakdown complete and saved.');
       }
     } catch (error) {
-      console.error('Script save error:', error);
-      showError(`Failed to save script: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      showError('Failed to save script.');
     }
   };
 
@@ -316,6 +243,25 @@ export const Script: React.FC = () => {
             <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
               Upload, edit and analyze scripts with AI-powered breakdown
             </p>
+          </div>
+          <div className="flex gap-2 sm:gap-3">
+            <Button
+              variant="secondary"
+              onClick={() => setShowUploadModal(true)}
+              className="text-sm"
+            >
+              <Upload className="h-4 w-4 mr-2" />
+              <span className="hidden sm:inline">Upload Script</span>
+              <span className="sm:hidden">Upload</span>
+            </Button>
+            <Button
+              onClick={() => setIsChatOpen(!isChatOpen)}
+              className="text-sm"
+            >
+              <MessageCircle className="h-4 w-4 mr-2" />
+              <span className="hidden sm:inline">AI Assistant</span>
+              <span className="sm:hidden">AI</span>
+            </Button>
           </div>
         </div>
 
@@ -587,9 +533,8 @@ export const Script: React.FC = () => {
                         Edit Script
                       </button>
                       <button
-                        onClick={saveScript}
-                        disabled={!scriptText || scriptText.trim().length === 0}
-                        className="inline-flex items-center px-3 py-2 bg-orange-600 hover:bg-orange-700 disabled:bg-orange-400 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition-colors"
+                        onClick={handleScriptBreakdown}
+                        className="inline-flex items-center px-3 py-2 bg-orange-600 hover:bg-orange-700 text-white text-sm font-medium rounded-lg transition-colors"
                       >
                         <Bot className="h-4 w-4 mr-2" />
                         AI Breakdown

@@ -23,15 +23,6 @@ import {
   Package,
 } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
-import { Role } from '../../utils/permissions';
-
-interface NavigationItem {
-  name: string;
-  href: string;
-  icon: React.ElementType;
-  permissions: string[];
-  allowedRoles: Role[];
-}
 
 interface SidebarProps {
   isCollapsed: boolean;
@@ -40,97 +31,85 @@ interface SidebarProps {
   id?: string;
 }
 
-const navigationItems: NavigationItem[] = [
+const navigationItems = [
   {
     name: 'Dashboard',
     href: '/dashboard',
     icon: LayoutDashboard,
     permissions: ['view_all', 'view_tasks', 'view_assigned_tasks', 'view_vfx_tasks'],
-    allowedRoles: ['Producer', 'Production Manager', 'Director', 'Crew', 'VFX', 'Distribution Manager'],
   },
   {
     name: 'Tasks',
     href: '/tasks',
     icon: CheckSquare,
     permissions: ['manage_tasks', 'view_assigned_tasks', 'view_vfx_tasks'],
-    allowedRoles: ['Producer', 'Production Manager', 'Director', 'Crew', 'VFX'],
   },
   {
     name: 'Script',
     href: '/script',
     icon: FileText,
     permissions: ['manage_script', 'ai_breakdown'],
-    allowedRoles: ['Producer', 'Production Manager', 'Director'],
   },
   {
     name: 'Scheduling',
     href: '/scheduling',
     icon: Calendar,
     permissions: ['manage_production', 'view_all'],
-    allowedRoles: ['Producer', 'Production Manager'],
   },
   {
     name: 'Budget Management',
     href: '/budget-management',
     icon: DollarSign,
     permissions: ['manage_budget', 'view_all'],
-    allowedRoles: ['Producer', 'Production Manager'],
   },
   {
     name: 'Call Sheets',
     href: '/call-sheets',
     icon: ClipboardList,
     permissions: ['manage_production', 'view_all'],
-    allowedRoles: ['Producer', 'Production Manager'],
   },
   {
     name: 'Expense Tracking',
     href: '/expense-tracking',
     icon: TrendingUp,
     permissions: ['manage_budget', 'view_all'],
-    allowedRoles: ['Producer', 'Production Manager'],
   },
   {
     name: 'Budget Reports',
     href: '/budget-reports',
     icon: FileSpreadsheet,
     permissions: ['view_reports', 'manage_budget', 'view_all'],
-    allowedRoles: ['Producer', 'Production Manager'],
   },
   {
     name: 'Props Marketplace',
     href: '/props-marketplace',
     icon: ShoppingCart,
     permissions: ['manage_props', 'view_all'],
-    allowedRoles: ['Producer', 'Production Manager', 'Director', 'Crew', 'VFX', 'Distribution Manager'],
   },
   {
     name: 'Assets',
     href: '/assets',
     icon: FolderOpen,
     permissions: ['upload_assets', 'view_all'],
-    allowedRoles: ['Producer', 'Production Manager', 'Director', 'Crew', 'VFX'],
   },
   {
     name: 'VFX',
     href: '/vfx',
     icon: Zap,
     permissions: ['view_vfx_tasks', 'upload_versions', 'request_review'],
-    allowedRoles: ['Producer', 'Production Manager', 'Director', 'VFX'],
   },
   {
     name: 'Reports',
     href: '/reports',
     icon: BarChart3,
     permissions: ['view_reports', 'view_all'],
-    allowedRoles: ['Producer', 'Production Manager', 'Director', 'Distribution Manager'],
   },
 ];
 
 export const Sidebar: React.FC<SidebarProps> = ({ 
   isCollapsed, 
-  isMobileOpen, // Kept for compatibility but not used
-  onClose,      // Kept for compatibility but not used
+  isMobileOpen, 
+  onClose, 
   id 
 }) => {
   const { user, logout, hasAnyPermission } = useAuth();
@@ -140,16 +119,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
     logout();
   };
 
-  const filteredNavItems = navigationItems.filter(item => {
-    // First check permissions
-    const hasPermission = hasAnyPermission(item.permissions);
-    
-    // Then check if this item should be visible for the user's role
-    const isAllowedForRole = user && item.allowedRoles && 
-      item.allowedRoles.includes(user.role as Role);
-    
-    return hasPermission && isAllowedForRole;
-  });
+  const filteredNavItems = navigationItems.filter(item =>
+    hasAnyPermission(item.permissions)
+  );
 
   return (
     <motion.div

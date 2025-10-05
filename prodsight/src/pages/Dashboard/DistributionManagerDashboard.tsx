@@ -1,24 +1,29 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Globe, TrendingUp, DollarSign, Calendar, BarChart3,
-  Target, PlayCircle, Monitor, Star, Eye
+  Globe, TrendingUp, DollarSign, Users, Calendar, BarChart3,
+  Target, PlayCircle, Share2, Monitor, Smartphone, Tv,
+  Film, Award, Star, Eye, Download, MessageCircle
 } from 'lucide-react';
 import { KPICard } from '../../components/dashboard/KPICard';
 import { formatCurrency } from '../../utils/formatters';
-import { User } from '../../api/endpoints';
+import { Task, Budget, Script, User } from '../../api/endpoints';
 import { PlatformManagement } from '../../components/distribution/PlatformManagement';
 import { MarketingCampaigns } from '../../components/distribution/MarketingCampaigns';
 import { RevenueAnalytics } from '../../components/distribution/RevenueAnalytics';
-import { ReleaseManagement } from '../../components/distribution/ReleaseManagement';
-import { DistributionAnalytics } from '../../components/distribution/DistributionAnalytics';
 
 interface DistributionManagerDashboardProps {
   user: User;
+  tasks: Task[];
+  budget: Budget | null;
+  script: Script | null;
 }
 
 export const DistributionManagerDashboard: React.FC<DistributionManagerDashboardProps> = ({
-  user: _ // Unused but kept for type compatibility
+  user,
+  tasks,
+  budget,
+  script,
 }) => {
   const [activeTab, setActiveTab] = useState('overview');
 
@@ -30,7 +35,7 @@ export const DistributionManagerDashboard: React.FC<DistributionManagerDashboard
     averageRating: 4.2,
     marketingSpend: 180000,
     conversionRate: 3.2,
-    releaseDate: '2025-11-15',
+    releaseDate: '2024-03-15',
     territories: 25
   };
 
@@ -61,12 +66,26 @@ export const DistributionManagerDashboard: React.FC<DistributionManagerDashboard
     { id: 'revenue', label: 'Revenue', icon: DollarSign }
   ];
 
-
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'Live': return 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300';
+      case 'Pending': return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-300';
+      case 'In Review': return 'bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-300';
+      case 'Negotiating': return 'bg-purple-100 text-purple-800 dark:bg-purple-900/20 dark:text-purple-300';
+      default: return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300';
+    }
+  };
 
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+            Distribution Manager Dashboard
+          </h1>
+          <p className="text-gray-600 dark:text-gray-400">Welcome back, {user.name}</p>
+        </div>
         <div className="flex items-center space-x-4">
           <div className="text-sm text-gray-600 dark:text-gray-400">
             Release Date: {distributionMetrics.releaseDate}
@@ -287,7 +306,14 @@ export const DistributionManagerDashboard: React.FC<DistributionManagerDashboard
             exit={{ opacity: 0, x: 20 }}
             className="space-y-6"
           >
-            <DistributionAnalytics />
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+                Distribution Analytics
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400">
+                Advanced analytics dashboard coming soon...
+              </p>
+            </div>
           </motion.div>
         )}
 
@@ -299,7 +325,14 @@ export const DistributionManagerDashboard: React.FC<DistributionManagerDashboard
             exit={{ opacity: 0, x: 20 }}
             className="space-y-6"
           >
-            <ReleaseManagement />
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+                Release Management
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400">
+                Release scheduling and management features coming soon...
+              </p>
+            </div>
           </motion.div>
         )}
 

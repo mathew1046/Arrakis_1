@@ -20,13 +20,9 @@ class ApiClient {
   ): Promise<ApiResponse<T>> {
     const url = `${this.baseURL}${endpoint}`;
     
-    // Only set default Content-Type if not FormData
-    const defaultHeaders: Record<string, string> = {};
-    
-    // Don't set Content-Type for FormData (browser will set it with boundary)
-    if (!(options.body instanceof FormData)) {
-      defaultHeaders['Content-Type'] = 'application/json';
-    }
+    const defaultHeaders = {
+      'Content-Type': 'application/json',
+    };
 
     const config: RequestInit = {
       ...options,
@@ -72,15 +68,13 @@ class ApiClient {
 
     if (data instanceof FormData) {
       config.body = data;
-      // Don't set Content-Type header - browser will set it with boundary
-      // Remove Content-Type from headers if it exists
-      if (config.headers) {
-        const headers = { ...config.headers };
-        delete (headers as any)['Content-Type'];
-        config.headers = headers;
-      }
+      // Let browser set Content-Type for FormData
     } else {
       config.body = JSON.stringify(data);
+      if (!config.headers) {
+        config.headers = {};
+      }
+      (config.headers as any)['Content-Type'] = 'application/json';
     }
 
     return this.request(endpoint, config);

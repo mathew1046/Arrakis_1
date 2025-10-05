@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { scriptApi, Script, Scene } from '../api/endpoints';
 import { useNotification } from '../providers/NotificationProvider';
-import { useWebSocket } from '../providers/WebSocketProvider';
-import { ScriptUpdateEvent } from '../services/websocketService';
 
 interface UseScriptReturn {
   script: Script | null;
@@ -22,7 +20,6 @@ export const useScript = (): UseScriptReturn => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const { showSuccess, showError } = useNotification();
-  const { subscribe } = useWebSocket();
 
   const fetchScript = async () => {
     try {
@@ -109,26 +106,14 @@ export const useScript = (): UseScriptReturn => {
 
   useEffect(() => {
     fetchScript();
+    
+    // Set up polling for updates every 30 seconds
+    const interval = setInterval(() => {
+      fetchScript();
+    }, 30000);
+    
+    return () => clearInterval(interval);
   }, []);
-
-  // Subscribe to WebSocket script updates
-  useEffect(() => {
-    const unsubscribe = subscribe<ScriptUpdateEvent>('script_update', (event) => {
-      console.log('Received script update:', event);
-      
-      // Handle different types of script updates
-      switch (event.action) {
-        case 'updated':
-          // Refresh script to get the latest state
-          fetchScript();
-          break;
-        default:
-          console.log('Unknown script update action:', event.action);
-      }
-    });
-
-    return unsubscribe;
-  }, [subscribe]);
 
   return {
     script,

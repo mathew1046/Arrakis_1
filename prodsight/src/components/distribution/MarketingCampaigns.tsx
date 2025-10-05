@@ -55,7 +55,7 @@ export const MarketingCampaigns: React.FC = () => {
       {
         id: '1',
         name: 'Social Media Blitz',
-        type: 'social_media', // Matches "Social Media Blitz" in dashboard
+        type: 'social_media',
         status: 'active',
         budget: 50000,
         spent: 42000,
@@ -89,7 +89,7 @@ export const MarketingCampaigns: React.FC = () => {
       {
         id: '2',
         name: 'Influencer Partnerships',
-        type: 'influencer', // Matches "Influencer Partnerships" in dashboard
+        type: 'influencer',
         status: 'active',
         budget: 75000,
         spent: 68000,
@@ -122,8 +122,8 @@ export const MarketingCampaigns: React.FC = () => {
       },
       {
         id: '3',
-        name: 'Traditional Media',
-        type: 'traditional', // Matches "Traditional Media" in dashboard
+        name: 'Traditional Media Push',
+        type: 'traditional',
         status: 'completed',
         budget: 40000,
         spent: 35000,
@@ -157,7 +157,7 @@ export const MarketingCampaigns: React.FC = () => {
       {
         id: '4',
         name: 'Digital Advertising',
-        type: 'digital', // Matches "Digital Advertising" in dashboard
+        type: 'digital',
         status: 'active',
         budget: 60000,
         spent: 55000,

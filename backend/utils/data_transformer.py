@@ -3,10 +3,9 @@ from datetime import datetime
 def transform_script_data(script):
     """Transforms script data to match frontend expectations."""
     # Rename top-level fields for frontend compatibility
-    # Support both snake_case and camelCase field names
-    script['totalScenes'] = script.pop('total_scenes', script.get('totalScenes', len(script.get('scenes', []))))
-    script['totalEstimatedDuration'] = script.pop('total_runtime_minutes', script.get('totalEstimatedDuration', 0))
-    script['vfxScenes'] = script.pop('total_vfx_scenes', script.get('vfxScenes', 0))
+    script['totalScenes'] = script.pop('total_scenes', 0)
+    script['totalEstimatedDuration'] = script.pop('total_runtime_minutes', 0)
+    script['vfxScenes'] = script.pop('total_vfx_scenes', 0)
 
     # Ensure essential fields exist
     if 'version' not in script:

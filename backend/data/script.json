@@ -4,7 +4,7 @@
     {
       "characters": [],
       "day_night": "NIGHT",
-      "description": "An abandoned radio station's crumbling tower is revealed against a stormy night sky, periodically illuminated by lightning.",
+      "description": "A decaying radio tower is silhouetted against a turbulent, storm-filled sky, intermittently lit by flashes of lightning.",
       "estimatedDuration": 1,
       "estimated_runtime_minutes": 1,
       "extras": [],
@@ -12,20 +12,18 @@
       "int_ext": "EXT",
       "location": "Abandoned Radio Station",
       "makeup_hair": [],
-      "mood_tone": "ominous",
+      "mood_tone": "Ominous",
       "number": "1",
-      "props": [
-        "radio tower"
-      ],
+      "props": [],
       "scene_complexity": "Low",
-      "scene_description": "An abandoned radio station's crumbling tower is revealed against a stormy night sky, periodically illuminated by lightning.",
+      "scene_description": "A decaying radio tower is silhouetted against a turbulent, storm-filled sky, intermittently lit by flashes of lightning.",
       "scene_number": 1,
       "scene_status": "Not Shot",
       "set_dressing": [
-        "crumbling structure"
+        "Crumbling radio tower"
       ],
       "sound_requirements": [
-        "thunder"
+        "Thunder"
       ],
       "special_equipment": [],
       "status": "Not Shot",
@@ -33,22 +31,357 @@
       "timeOfDay": "NIGHT",
       "title": "EXT. ABANDONED RADIO STATION - NIGHT",
       "vehicles_animals_fx": [
-        "stormy sky",
-        "lightning"
+        "Lightning",
+        "Stormy sky"
       ],
       "vfx": true,
-      "vfx_details": "Lightning and stormy sky effects.",
+      "vfx_details": "Enhance stormy sky and lightning effects.",
       "vfx_required": true,
+      "wardrobe": []
+    },
+    {
+      "characters": [
+        "Maya Chen"
+      ],
+      "day_night": "NIGHT",
+      "description": "Maya Chen, a software engineer, adjusts dials on old equipment in a radio station control room at night. A peculiar signal emanates from the speakers.",
+      "estimatedDuration": 1,
+      "estimated_runtime_minutes": 1,
+      "extras": [],
+      "id": "2",
+      "int_ext": "INT",
+      "location": "Radio Station Control Room",
+      "makeup_hair": [],
+      "mood_tone": "mysterious",
+      "number": "2",
+      "props": [
+        "ancient equipment",
+        "dials",
+        "speakers"
+      ],
+      "scene_complexity": "Low",
+      "scene_description": "Maya Chen, a software engineer, adjusts dials on old equipment in a radio station control room at night. A peculiar signal emanates from the speakers.",
+      "scene_number": 2,
+      "scene_status": "Not Shot",
+      "set_dressing": [],
+      "sound_requirements": [
+        "strange signal pulses"
+      ],
+      "special_equipment": [],
+      "status": "Not Shot",
+      "stunts_vfx": [],
+      "timeOfDay": "NIGHT",
+      "title": "INT. RADIO STATION - CONTROL ROOM - NIGHT",
+      "vehicles_animals_fx": [],
+      "vfx": false,
+      "vfx_details": "N/A",
+      "vfx_required": false,
+      "wardrobe": []
+    },
+    {
+      "characters": [
+        "Maya",
+        "Alex"
+      ],
+      "day_night": "DAY",
+      "description": "Maya is in her apartment living room, reviewing audio files on her laptop. Her roommate, Alex, enters with coffee and they have a brief conversation about her work.",
+      "estimatedDuration": 1,
+      "estimated_runtime_minutes": 1,
+      "extras": [],
+      "id": "3",
+      "int_ext": "INT",
+      "location": "Maya's Apartment - Living Room",
+      "makeup_hair": [],
+      "mood_tone": "Casual",
+      "number": "3",
+      "props": [
+        "Laptop",
+        "Coffee"
+      ],
+      "scene_complexity": "Low",
+      "scene_description": "Maya is in her apartment living room, reviewing audio files on her laptop. Her roommate, Alex, enters with coffee and they have a brief conversation about her work.",
+      "scene_number": 3,
+      "scene_status": "Not Shot",
+      "set_dressing": [],
+      "sound_requirements": [],
+      "special_equipment": [],
+      "status": "Not Shot",
+      "stunts_vfx": [],
+      "timeOfDay": "DAY",
+      "title": "INT. MAYA'S APARTMENT - LIVING ROOM - DAY",
+      "vehicles_animals_fx": [],
+      "vfx": false,
+      "vfx_details": "N/A",
+      "vfx_required": false,
+      "wardrobe": []
+    },
+    {
+      "characters": [
+        "Maya"
+      ],
+      "day_night": "DAY",
+      "description": "Maya walks briskly across the university campus quad, carrying files under her arm.",
+      "estimatedDuration": 1,
+      "estimated_runtime_minutes": 1,
+      "extras": [],
+      "id": "4",
+      "int_ext": "EXT",
+      "location": "University Campus Quad",
+      "makeup_hair": [],
+      "mood_tone": "neutral",
+      "number": "4",
+      "props": [
+        "files"
+      ],
+      "scene_complexity": "Low",
+      "scene_description": "Maya walks briskly across the university campus quad, carrying files under her arm.",
+      "scene_number": 4,
+      "scene_status": "Not Shot",
+      "set_dressing": [
+        "quad"
+      ],
+      "sound_requirements": [
+        "ambient campus sounds"
+      ],
+      "special_equipment": [],
+      "status": "Not Shot",
+      "stunts_vfx": [],
+      "timeOfDay": "DAY",
+      "title": "EXT. UNIVERSITY CAMPUS - DAY",
+      "vehicles_animals_fx": [],
+      "vfx": false,
+      "vfx_details": "N/A",
+      "vfx_required": false,
+      "wardrobe": []
+    },
+    {
+      "characters": [
+        "Professor Rhodes",
+        "Maya"
+      ],
+      "day_night": "DAY",
+      "description": "Professor Rhodes, an astrophysicist, reviews Maya's findings with growing concern, questioning the accuracy of coordinates that point to an unknown destination.",
+      "estimatedDuration": 1,
+      "estimated_runtime_minutes": 1,
+      "extras": [],
+      "id": "5",
+      "int_ext": "INT",
+      "location": "Professor Rhodes' Office",
+      "makeup_hair": [],
+      "mood_tone": "concerned",
+      "number": "5",
+      "props": [
+        "Maya's findings",
+        "coordinates"
+      ],
+      "scene_complexity": "Low",
+      "scene_description": "Professor Rhodes, an astrophysicist, reviews Maya's findings with growing concern, questioning the accuracy of coordinates that point to an unknown destination.",
+      "scene_number": 5,
+      "scene_status": "Not Shot",
+      "set_dressing": [
+        "office"
+      ],
+      "sound_requirements": [],
+      "special_equipment": [],
+      "status": "Not Shot",
+      "stunts_vfx": [],
+      "timeOfDay": "DAY",
+      "title": "INT. PROFESSOR RHODES' OFFICE - DAY",
+      "vehicles_animals_fx": [],
+      "vfx": false,
+      "vfx_details": "N/A",
+      "vfx_required": false,
+      "wardrobe": []
+    },
+    {
+      "characters": [
+        "AGENT TORRES"
+      ],
+      "day_night": "DAY",
+      "description": "Agent Torres reviews classified documents while a team of analysts gathers around a conference table in a government facility briefing room.",
+      "estimatedDuration": 1,
+      "estimated_runtime_minutes": 1,
+      "extras": [
+        "Analysts"
+      ],
+      "id": "6",
+      "int_ext": "INT",
+      "location": "Government Facility - Briefing Room",
+      "makeup_hair": [],
+      "mood_tone": "Professional, focused",
+      "number": "6",
+      "props": [
+        "Classified documents",
+        "Conference table"
+      ],
+      "scene_complexity": "Low",
+      "scene_description": "Agent Torres reviews classified documents while a team of analysts gathers around a conference table in a government facility briefing room.",
+      "scene_number": 6,
+      "scene_status": "Not Shot",
+      "set_dressing": [
+        "Government facility briefing room elements"
+      ],
+      "sound_requirements": [
+        "Ambient office sounds"
+      ],
+      "special_equipment": [],
+      "status": "Not Shot",
+      "stunts_vfx": [],
+      "timeOfDay": "DAY",
+      "title": "INT. GOVERNMENT FACILITY - BRIEFING ROOM - DAY",
+      "vehicles_animals_fx": [],
+      "vfx": false,
+      "vfx_details": "N/A",
+      "vfx_required": false,
+      "wardrobe": [
+        "Agent Torres's attire (inferred as professional/government)",
+        "Analysts' attire (inferred as professional/government)"
+      ]
+    },
+    {
+      "characters": [
+        "Maya"
+      ],
+      "day_night": "DAY",
+      "description": "Maya drives alone through a barren desert landscape with radio towers visible in the distance.",
+      "estimatedDuration": 1,
+      "estimated_runtime_minutes": 1,
+      "extras": [],
+      "id": "7",
+      "int_ext": "EXT",
+      "location": "Desert Highway",
+      "makeup_hair": [],
+      "mood_tone": "lonely",
+      "number": "7",
+      "props": [
+        "radio station towers"
+      ],
+      "scene_complexity": "Low",
+      "scene_description": "Maya drives alone through a barren desert landscape with radio towers visible in the distance.",
+      "scene_number": 7,
+      "scene_status": "Not Shot",
+      "set_dressing": [
+        "barren landscape"
+      ],
+      "sound_requirements": [
+        "radio static",
+        "engine noise"
+      ],
+      "special_equipment": [],
+      "status": "Not Shot",
+      "stunts_vfx": [],
+      "timeOfDay": "DAY",
+      "title": "EXT. DESERT HIGHWAY - DAY",
+      "vehicles_animals_fx": [
+        "Maya's car"
+      ],
+      "vfx": false,
+      "vfx_details": "N/A",
+      "vfx_required": false,
+      "wardrobe": []
+    },
+    {
+      "characters": [
+        "Maya",
+        "Rhodes"
+      ],
+      "day_night": "DAY",
+      "description": "Maya is driving in her car when her phone rings. She hesitates before answering, and Rhodes speaks urgently through the speaker.",
+      "estimatedDuration": 1,
+      "estimated_runtime_minutes": 1,
+      "extras": [],
+      "id": "8",
+      "int_ext": "INT",
+      "location": "Maya's Car",
+      "makeup_hair": [],
+      "mood_tone": "Urgent",
+      "number": "8",
+      "props": [
+        "Phone"
+      ],
+      "scene_complexity": "Low",
+      "scene_description": "Maya is driving in her car when her phone rings. She hesitates before answering, and Rhodes speaks urgently through the speaker.",
+      "scene_number": 8,
+      "scene_status": "Not Shot",
+      "set_dressing": [],
+      "sound_requirements": [
+        "Phone ringing",
+        "Voice through speaker"
+      ],
+      "special_equipment": [],
+      "status": "Not Shot",
+      "stunts_vfx": [],
+      "timeOfDay": "DAY",
+      "title": "INT. MAYA'S CAR - MOVING - DAY",
+      "vehicles_animals_fx": [],
+      "vfx": false,
+      "vfx_details": "N/A",
+      "vfx_required": false,
+      "wardrobe": []
+    },
+    {
+      "characters": [
+        "Maya"
+      ],
+      "day_night": "DUSK",
+      "description": "Maya arrives at a radio station parking area at dusk, retrieving equipment from her car as a black SUV arrives.",
+      "estimatedDuration": 1,
+      "estimated_runtime_minutes": 1,
+      "extras": [],
+      "id": "9",
+      "int_ext": "EXT",
+      "location": "Radio Station Parking Area",
+      "makeup_hair": [],
+      "mood_tone": "transitional",
+      "number": "9",
+      "props": [
+        "equipment",
+        "trunk"
+      ],
+      "scene_complexity": "Low",
+      "scene_description": "Maya arrives at a radio station parking area at dusk, retrieving equipment from her car as a black SUV arrives.",
+      "scene_number": 9,
+      "scene_status": "Not Shot",
+      "set_dressing": [],
+      "sound_requirements": [
+        "car engine"
+      ],
+      "special_equipment": [],
+      "status": "Not Shot",
+      "stunts_vfx": [],
+      "timeOfDay": "DUSK",
+      "title": "EXT. RADIO STATION - PARKING AREA - DUSK",
+      "vehicles_animals_fx": [
+        "SUV"
+      ],
+      "vfx": false,
+      "vfx_details": "N/A",
+      "vfx_required": false,
       "wardrobe": []
     }
   ],
-  "totalScenes": 1,
-  "totalEstimatedDuration": 1,
+  "totalScenes": 9,
+  "totalEstimatedDuration": 9,
   "vfxScenes": 1,
   "version": "1.0.0",
-  "lastModified": "2025-10-06",
+  "lastModified": "2025-10-05",
   "locations": [
-    "Abandoned Radio Station"
+    "Radio Station Control Room",
+    "Desert Highway",
+    "Radio Station Parking Area",
+    "Abandoned Radio Station",
+    "Professor Rhodes' Office",
+    "Maya's Apartment - Living Room",
+    "University Campus Quad",
+    "Maya's Car",
+    "Government Facility - Briefing Room"
   ],
-  "characters": []
+  "characters": [
+    "Professor Rhodes",
+    "Alex",
+    "Maya Chen",
+    "Rhodes",
+    "Maya",
+    "AGENT TORRES"
+  ]
 }

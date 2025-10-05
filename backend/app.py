@@ -1,12 +1,10 @@
 from flask import Flask
 from flask_restful import Api
 from flask_cors import CORS
-from flask_socketio import SocketIO
 import os
 
 from config import config
 from utils.json_handler import ensure_data_directory
-from websocket_manager import init_websocket_manager
 
 def create_app(config_name='default'):
     """Application factory pattern"""
@@ -15,17 +13,6 @@ def create_app(config_name='default'):
     
     # Initialize extensions
     api = Api(app)
-    
-    # Initialize SocketIO with CORS support
-    socketio = SocketIO(app, 
-                       cors_allowed_origins="*",
-                       async_mode='threading',
-                       logger=True,
-                       engineio_logger=True)
-    
-    # Initialize WebSocket manager
-    websocket_manager = init_websocket_manager(socketio)
-    
     # CORS configuration for development
     CORS(app, 
          origins='*',  # Allow all origins in development
@@ -84,13 +71,9 @@ def create_app(config_name='default'):
     def handle_options(path):
         return '', 200
     
-    # Store socketio instance in app context for access in routes
-    app.socketio = socketio
-    app.websocket_manager = websocket_manager
-    
-    return app, socketio
+    return app
 
 if __name__ == '__main__':
-    app, socketio = create_app()
-    socketio.run(app, debug=True, host='0.0.0.0', port=5000, allow_unsafe_werkzeug=True)
+    app = create_app()
+    app.run(debug=True, host='0.0.0.0', port=5000)
 

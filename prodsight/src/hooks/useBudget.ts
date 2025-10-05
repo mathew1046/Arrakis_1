@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { budgetApi, Budget, BudgetCategory, BudgetHistory } from '../api/endpoints';
 import { useNotification } from '../providers/NotificationProvider';
-import { useWebSocket } from '../providers/WebSocketProvider';
-import { BudgetUpdateEvent } from '../services/websocketService';
 
 interface UseBudgetReturn {
   budget: Budget | null;
@@ -22,7 +20,6 @@ export const useBudget = (): UseBudgetReturn => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const { showSuccess, showError } = useNotification();
-  const { subscribe } = useWebSocket();
 
   const fetchBudget = async () => {
     try {
@@ -102,25 +99,6 @@ export const useBudget = (): UseBudgetReturn => {
   useEffect(() => {
     fetchBudget();
   }, []);
-
-  // Subscribe to WebSocket budget updates
-  useEffect(() => {
-    const unsubscribe = subscribe<BudgetUpdateEvent>('budget_update', (event) => {
-      console.log('Received budget update:', event);
-      
-      // Handle different types of budget updates
-      switch (event.action) {
-        case 'updated':
-          // Refresh budget to get the latest state
-          fetchBudget();
-          break;
-        default:
-          console.log('Unknown budget update action:', event.action);
-      }
-    });
-
-    return unsubscribe;
-  }, [subscribe]);
 
   return {
     budget,

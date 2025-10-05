@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import { tasksApi, Task } from '../api/endpoints';
 import { useNotification } from '../providers/NotificationProvider';
 import { useAuth } from './useAuth';
-import { useWebSocket } from '../providers/WebSocketProvider';
-import { TaskUpdateEvent } from '../services/websocketService';
 
 interface UseTasksReturn {
   tasks: Task[];
@@ -23,7 +21,6 @@ export const useTasks = (): UseTasksReturn => {
   const [error, setError] = useState<string | null>(null);
   const { showSuccess, showError } = useNotification();
   const { user } = useAuth();
-  const { subscribe } = useWebSocket();
 
   const fetchTasks = async () => {
     try {
@@ -58,7 +55,6 @@ export const useTasks = (): UseTasksReturn => {
       if (response.success) {
         setTasks(response.data);
         showSuccess('Task created successfully');
-        // Note: WebSocket event will be emitted by backend
       } else {
         throw new Error('Failed to create task');
       }
@@ -113,29 +109,15 @@ export const useTasks = (): UseTasksReturn => {
   useEffect(() => {
     if (user) {
       fetchTasks();
+      
+      // Set up polling for updates every 30 seconds
+      const interval = setInterval(() => {
+        fetchTasks();
+      }, 30000);
+      
+      return () => clearInterval(interval);
     }
   }, [user]);
-
-  // Subscribe to WebSocket task updates
-  useEffect(() => {
-    const unsubscribe = subscribe<TaskUpdateEvent>('task_update', (event) => {
-      console.log('Received task update:', event);
-      
-      // Handle different types of task updates
-      switch (event.action) {
-        case 'created':
-        case 'updated':
-        case 'deleted':
-          // Refresh tasks to get the latest state
-          fetchTasks();
-          break;
-        default:
-          console.log('Unknown task update action:', event.action);
-      }
-    });
-
-    return unsubscribe;
-  }, [subscribe]);
 
   return {
     tasks,

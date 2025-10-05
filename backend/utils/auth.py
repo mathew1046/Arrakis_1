@@ -1,7 +1,6 @@
 import bcrypt
-import jwt
 from functools import wraps
-from flask import request, jsonify, current_app
+from flask import request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 from utils.json_handler import json_handler
 
@@ -79,40 +78,3 @@ def require_role(*required_roles):
             return f(*args, **kwargs)
         return decorated_function
     return decorator
-
-def decode_jwt_token(token: str) -> dict:
-    """Decode JWT token for WebSocket authentication"""
-    try:
-        # Remove 'Bearer ' prefix if present
-        if token.startswith('Bearer '):
-            token = token[7:]
-        
-        # Get JWT secret from config
-        secret_key = 'jwt-secret-string'  # Should match JWT_SECRET_KEY in config
-        
-        # Decode the token
-        payload = jwt.decode(token, secret_key, algorithms=['HS256'])
-        
-        # Get user data
-        user_id = payload.get('sub')  # 'sub' is the standard JWT claim for user ID
-        if user_id:
-            user = get_user_by_id(user_id)
-            if user:
-                return {
-                    'user_id': user_id,
-                    'username': user.get('username'),
-                    'role': user.get('role'),
-                    'permissions': user.get('permissions', [])
-                }
-        
-        return None
-        
-    except jwt.ExpiredSignatureError:
-        print("JWT token has expired")
-        return None
-    except jwt.InvalidTokenError as e:
-        print(f"Invalid JWT token: {str(e)}")
-        return None
-    except Exception as e:
-        print(f"Error decoding JWT token: {str(e)}")
-        return None

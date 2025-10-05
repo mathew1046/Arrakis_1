@@ -5,7 +5,7 @@ from typing import List, Dict, Any, Tuple
 import re
 from collections import defaultdict
 from utils.gemini_scheduler import GeminiScheduler
-from utils.schedule_sync import ensure_scene_titles_updated
+# from utils.schedule_sync import ensure_scene_titles_updated  # Temporarily disabled
 
 # Create blueprint
 ai_bp = Blueprint('ai', __name__)
@@ -275,13 +275,6 @@ def generate_gemini_schedule():
     This is the main endpoint for the "Generate AI Schedule" button
     """
     try:
-        # Ensure shooting_schedule.json is synced from the latest script.json before generation
-        try:
-            ensure_scene_titles_updated()
-        except Exception:
-            # Non-fatal: continue even if sync fails; downstream will handle missing data
-            pass
-
         # Load shooting schedule data (primary input)
         shooting_data = load_json_file('shooting_schedule.json')
         

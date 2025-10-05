@@ -1,7 +1,6 @@
-from flask import Blueprint, request, jsonify, current_app
+from flask import Blueprint, request, jsonify
 from utils.json_handler import json_handler
 from utils.auth import get_user_by_id
-from websocket_manager import get_websocket_manager
 
 tasks_bp = Blueprint('tasks', __name__)
 
@@ -110,14 +109,9 @@ def create_task():
         success = json_handler.write_json('tasks.json', tasks)
         
         if success:
-            # Emit WebSocket event for task creation
-            ws_manager = get_websocket_manager()
-            if ws_manager:
-                ws_manager.broadcast_task_update(new_task, 'created')
-            
             return jsonify({
                 'success': True,
-                'data': tasks,  # Return all tasks for consistency
+                'data': new_task,
                 'message': 'Task created successfully'
             }), 201
         else:
@@ -186,18 +180,12 @@ def update_task(task_id):
         success = json_handler.update_by_id('tasks.json', task_id, data)
         
         if success:
-            # Get updated task and all tasks
+            # Return updated task
             updated_task = json_handler.find_by_id('tasks.json', task_id)
-            all_tasks = json_handler.read_json('tasks.json', [])
-            
-            # Emit WebSocket event for task update
-            ws_manager = get_websocket_manager()
-            if ws_manager:
-                ws_manager.broadcast_task_update(updated_task, 'updated')
             
             return jsonify({
                 'success': True,
-                'data': all_tasks,  # Return all tasks for consistency
+                'data': updated_task,
                 'message': 'Task updated successfully'
             }), 200
         else:
@@ -228,17 +216,8 @@ def delete_task(task_id):
         success = json_handler.delete_by_id('tasks.json', task_id)
         
         if success:
-            # Get remaining tasks
-            remaining_tasks = json_handler.read_json('tasks.json', [])
-            
-            # Emit WebSocket event for task deletion
-            ws_manager = get_websocket_manager()
-            if ws_manager:
-                ws_manager.broadcast_task_update(task, 'deleted')
-            
             return jsonify({
                 'success': True,
-                'data': remaining_tasks,  # Return remaining tasks for consistency
                 'message': 'Task deleted successfully'
             }), 200
         else:

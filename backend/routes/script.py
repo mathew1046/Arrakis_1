@@ -2,9 +2,6 @@ from flask import Blueprint, request, jsonify, current_app
 from utils.json_handler import json_handler
 from datetime import datetime
 import os
-from websocket_manager import get_websocket_manager
-from utils.script_metrics import script_metrics
-from utils.pdf_extractor import pdf_extractor
 
 script_bp = Blueprint('script', __name__)
 
@@ -22,21 +19,6 @@ def get_script():
                 'message': 'Script data not found'
             }), 404
         
-        # Recalculate metrics if they're missing or zero
-        scenes = script_data.get('scenes', [])
-        if script_data.get('totalScenes', 0) == 0 and len(scenes) > 0:
-            script_data['totalScenes'] = len(scenes)
-            script_data['totalEstimatedDuration'] = sum(
-                scene.get('estimated_runtime_minutes', scene.get('estimatedDuration', 0)) 
-                for scene in scenes
-            )
-            script_data['vfxScenes'] = sum(
-                1 for scene in scenes 
-                if scene.get('vfx_required', scene.get('vfx', False))
-            )
-            # Save the updated values
-            json_handler.write_json('script.json', script_data)
-        
         transformed_script = transform_script_data(script_data)
         
         return jsonify({
@@ -49,29 +31,6 @@ def get_script():
         return jsonify({
             'success': False,
             'message': 'Failed to fetch script'
-        }), 500
-
-@script_bp.route('/metrics', methods=['GET'])
-def get_script_metrics():
-    """Get script metrics from script-metrics.json"""
-    try:
-        # Check if metrics need updating
-        if not script_metrics.validate_metrics_sync():
-            current_app.logger.info("Script metrics out of sync, updating...")
-            script_metrics.update_metrics()
-        
-        metrics = script_metrics.get_metrics()
-        
-        return jsonify({
-            'success': True,
-            'data': metrics
-        }), 200
-        
-    except Exception as e:
-        current_app.logger.error(f"Failed to fetch script metrics: {e}")
-        return jsonify({
-            'success': False,
-            'message': 'Failed to fetch script metrics'
         }), 500
 
 @script_bp.route('', methods=['PUT'])
@@ -108,8 +67,8 @@ def update_script():
             scenes = data['scenes']
             script['scenes'] = scenes
             script['totalScenes'] = len(scenes)
-            script['totalEstimatedDuration'] = sum(scene.get('estimated_runtime_minutes', scene.get('estimatedDuration', 0)) for scene in scenes)
-            script['vfxScenes'] = sum(1 for scene in scenes if scene.get('vfx_required', scene.get('vfx', False)))
+            script['totalEstimatedDuration'] = sum(scene.get('estimatedDuration', 0) for scene in scenes)
+            script['vfxScenes'] = sum(1 for scene in scenes if scene.get('vfx', False))
             
             # Update locations and characters
             locations = set()
@@ -126,21 +85,6 @@ def update_script():
         success = json_handler.write_json('script.json', script)
         
         if success:
-            # Update script metrics
-            try:
-                script_metrics.update_metrics()
-                current_app.logger.info("Script metrics updated successfully")
-            except Exception as metrics_error:
-                current_app.logger.warning(f"Script metrics update failed: {str(metrics_error)}")
-            
-            # Emit WebSocket event for script update
-            try:
-                ws_manager = get_websocket_manager()
-                if ws_manager:
-                    ws_manager.broadcast_script_update(script, 'updated')
-            except Exception as ws_error:
-                current_app.logger.warning(f"WebSocket broadcast failed: {str(ws_error)}")
-            
             return jsonify({
                 'success': True,
                 'data': script,
@@ -153,10 +97,9 @@ def update_script():
             }), 500
             
     except Exception as e:
-        current_app.logger.error(f"Error updating script: {str(e)}")
         return jsonify({
             'success': False,
-            'message': f'Failed to update script: {str(e)}'
+            'message': 'Failed to update script'
         }), 500
 
 @script_bp.route('/scene/<scene_id>', methods=['PUT'])
@@ -217,21 +160,6 @@ def update_scene(scene_id):
         success = json_handler.write_json('script.json', script)
         
         if success:
-            # Update script metrics
-            try:
-                script_metrics.update_metrics()
-                current_app.logger.info("Script metrics updated after scene update")
-            except Exception as metrics_error:
-                current_app.logger.warning(f"Script metrics update failed: {str(metrics_error)}")
-            
-            # Emit WebSocket event for script update
-            try:
-                ws_manager = get_websocket_manager()
-                if ws_manager:
-                    ws_manager.broadcast_script_update(script, 'updated')
-            except Exception as ws_error:
-                current_app.logger.warning(f"WebSocket broadcast failed: {str(ws_error)}")
-            
             return jsonify({
                 'success': True,
                 'data': script,
@@ -247,83 +175,6 @@ def update_scene(scene_id):
         return jsonify({
             'success': False,
             'message': 'Failed to update scene'
-        }), 500
-
-@script_bp.route('/upload-pdf', methods=['POST'])
-def upload_pdf():
-    """Upload PDF and extract text"""
-    try:
-        # Debug logging
-        current_app.logger.info(f"Received upload request. Files: {list(request.files.keys())}")
-        current_app.logger.info(f"Content-Type: {request.content_type}")
-        
-        # Check if file is present in request
-        if 'file' not in request.files:
-            current_app.logger.error("No 'file' key in request.files")
-            return jsonify({
-                'success': False,
-                'message': 'No file provided'
-            }), 400
-        
-        file = request.files['file']
-        
-        # Check if file is selected
-        if file.filename == '':
-            return jsonify({
-                'success': False,
-                'message': 'No file selected'
-            }), 400
-        
-        # Check if file is PDF
-        if not file.filename.lower().endswith('.pdf'):
-            return jsonify({
-                'success': False,
-                'message': 'File must be a PDF'
-            }), 400
-        
-        # Read file content
-        pdf_content = file.read()
-        
-        # Validate PDF
-        if not pdf_extractor.validate_pdf(pdf_content):
-            return jsonify({
-                'success': False,
-                'message': 'Invalid PDF file'
-            }), 400
-        
-        # Extract text from PDF
-        extracted_text = pdf_extractor.extract_text_from_pdf(pdf_content)
-        
-        if not extracted_text:
-            return jsonify({
-                'success': False,
-                'message': 'Failed to extract text from PDF'
-            }), 500
-        
-        # Save extracted text to script.txt
-        script_path = os.path.join(current_app.config['DATA_DIR'], 'script.txt')
-        os.makedirs(os.path.dirname(script_path), exist_ok=True)
-        
-        with open(script_path, 'w', encoding='utf-8') as f:
-            f.write(extracted_text)
-        
-        current_app.logger.info(f"Successfully extracted {len(extracted_text)} characters from PDF")
-        
-        return jsonify({
-            'success': True,
-            'data': {
-                'content': extracted_text,
-                'filename': file.filename,
-                'length': len(extracted_text)
-            },
-            'message': 'PDF uploaded and text extracted successfully'
-        }), 200
-        
-    except Exception as e:
-        current_app.logger.error(f"Error uploading PDF: {str(e)}")
-        return jsonify({
-            'success': False,
-            'message': f'Failed to upload PDF: {str(e)}'
         }), 500
 
 @script_bp.route('/text', methods=['GET', 'PUT'])
@@ -482,21 +333,6 @@ def add_scene():
         success = json_handler.write_json('script.json', script)
         
         if success:
-            # Update script metrics
-            try:
-                script_metrics.update_metrics()
-                current_app.logger.info("Script metrics updated after scene addition")
-            except Exception as metrics_error:
-                current_app.logger.warning(f"Script metrics update failed: {str(metrics_error)}")
-            
-            # Emit WebSocket event for script update
-            try:
-                ws_manager = get_websocket_manager()
-                if ws_manager:
-                    ws_manager.broadcast_script_update(script, 'updated')
-            except Exception as ws_error:
-                current_app.logger.warning(f"WebSocket broadcast failed: {str(ws_error)}")
-            
             return jsonify({
                 'success': True,
                 'data': script,
