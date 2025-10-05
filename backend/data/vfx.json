@@ -1,0 +1,106 @@
+[
+  {
+    "id": "1",
+    "shotName": "VFX_001_CarExplosion",
+    "sceneId": "2",
+    "description": "Car explosion during chase sequence",
+    "status": "in_progress",
+    "priority": "high",
+    "assignee": "Lisa Park",
+    "dueDate": "2024-10-20",
+    "versions": [
+      {
+        "version": "v001",
+        "date": "2024-10-01",
+        "status": "review",
+        "notes": "Initial comp with basic explosion",
+        "fileSize": "2.1 GB"
+      },
+      {
+        "version": "v002",
+        "date": "2024-10-05",
+        "status": "approved",
+        "notes": "Added debris and enhanced lighting",
+        "fileSize": "2.3 GB"
+      }
+    ],
+    "estimatedHours": 24,
+    "complexity": "medium"
+  },
+  {
+    "id": "2",
+    "shotName": "VFX_002_HelicopterBG",
+    "sceneId": "4",
+    "description": "Helicopter and city background composite",
+    "status": "todo",
+    "priority": "high",
+    "assignee": "Lisa Park",
+    "dueDate": "2024-10-25",
+    "versions": [],
+    "estimatedHours": 32,
+    "complexity": "high"
+  },
+  {
+    "id": "3",
+    "shotName": "VFX_003_MuzzleFlash",
+    "sceneId": "4",
+    "description": "Muzzle flashes for rooftop gunfight",
+    "status": "done",
+    "priority": "medium",
+    "assignee": "Lisa Park",
+    "dueDate": "2024-10-15",
+    "versions": [
+      {
+        "version": "v001",
+        "date": "2024-10-08",
+        "status": "approved",
+        "notes": "Clean muzzle flashes with proper lighting integration",
+        "fileSize": "1.8 GB"
+      }
+    ],
+    "estimatedHours": 16,
+    "complexity": "low"
+  },
+  {
+    "id": "4",
+    "shotName": "VFX_004_GlassBreak",
+    "sceneId": "2",
+    "description": "Glass breaking effects for warehouse windows",
+    "status": "in_review",
+    "priority": "medium",
+    "assignee": "Lisa Park",
+    "dueDate": "2024-10-18",
+    "versions": [
+      {
+        "version": "v001",
+        "date": "2024-10-07",
+        "status": "review",
+        "notes": "Initial glass simulation, needs more realistic shards",
+        "fileSize": "1.5 GB"
+      }
+    ],
+    "estimatedHours": 20,
+    "complexity": "medium"
+  },
+  {
+    "id": "5",
+    "shotName": "VFX_TEST_001",
+    "sceneId": "6",
+    "description": "Test VFX shot for API validation",
+    "status": "in_progress",
+    "priority": "medium",
+    "assignee": "1",
+    "dueDate": "2024-12-20",
+    "versions": [
+      {
+        "version": "v001",
+        "date": "2025-10-05",
+        "status": "review",
+        "notes": "Initial test version",
+        "fileSize": "1.2 GB"
+      }
+    ],
+    "estimatedHours": 8,
+    "complexity": "low"
+  }
+]

@@ -1,0 +1,350 @@
+{
+  "project_info": {
+    "title": "Analyzed Script",
+    "total_scenes": 9,
+    "created_date": "2025-10-05",
+    "last_updated": "2025-10-05T14:03:48+05:30"
+  },
+  "optimization_info": {
+    "optimized_at": "2025-10-05T14:20:13+05:30",
+    "optimization_method": "AI-assisted location clustering and time sorting",
+    "total_scenes": 9
+  },
+  "optimized_schedule": [
+    {
+      "scene_number": 9,
+      "scene_title": "EXT. RADIO STATION - PARKING AREA - DUSK",
+      "location": "Radio Station Parking Area",
+      "extras": [],
+      "actors": [
+        {
+          "actor_name": "Maya",
+          "character_name": "Maya",
+          "call_time": "TBD",
+          "wrap_time": "TBD"
+        }
+      ],
+      "estimated_duration": "1 minute",
+      "time_of_day": "DUSK",
+      "shooting_date": "TBD",
+      "call_time": "TBD"
+    },
+    {
+      "scene_number": 1,
+      "scene_title": "EXT. ABANDONED RADIO STATION - NIGHT",
+      "location": "Abandoned Radio Station",
+      "extras": [],
+      "actors": [],
+      "estimated_duration": "1 minute",
+      "time_of_day": "NIGHT",
+      "shooting_date": "TBD",
+      "call_time": "TBD"
+    },
+    {
+      "scene_number": 2,
+      "scene_title": "INT. RADIO STATION - CONTROL ROOM - NIGHT",
+      "location": "Radio Station Control Room",
+      "extras": [],
+      "actors": [
+        {
+          "actor_name": "Maya Chen",
+          "character_name": "Maya Chen",
+          "call_time": "TBD",
+          "wrap_time": "TBD"
+        }
+      ],
+      "estimated_duration": "1 minute",
+      "time_of_day": "NIGHT",
+      "shooting_date": "TBD",
+      "call_time": "TBD"
+    },
+    {
+      "scene_number": 3,
+      "scene_title": "INT. MAYA'S APARTMENT - LIVING ROOM - DAY",
+      "location": "Maya's Apartment - Living Room",
+      "extras": [],
+      "actors": [
+        {
+          "actor_name": "Maya",
+          "character_name": "Maya",
+          "call_time": "TBD",
+          "wrap_time": "TBD"
+        },
+        {
+          "actor_name": "Alex",
+          "character_name": "Alex",
+          "call_time": "TBD",
+          "wrap_time": "TBD"
+        }
+      ],
+      "estimated_duration": "1 minute",
+      "time_of_day": "DAY",
+      "shooting_date": "TBD",
+      "call_time": "TBD"
+    },
+    {
+      "scene_number": 8,
+      "scene_title": "INT. MAYA'S CAR - MOVING - DAY",
+      "location": "Maya's Car",
+      "extras": [],
+      "actors": [
+        {
+          "actor_name": "Maya",
+          "character_name": "Maya",
+          "call_time": "TBD",
+          "wrap_time": "TBD"
+        },
+        {
+          "actor_name": "Rhodes",
+          "character_name": "Rhodes",
+          "call_time": "TBD",
+          "wrap_time": "TBD"
+        }
+      ],
+      "estimated_duration": "1 minute",
+      "time_of_day": "DAY",
+      "shooting_date": "TBD",
+      "call_time": "TBD"
+    },
+    {
+      "scene_number": 4,
+      "scene_title": "EXT. UNIVERSITY CAMPUS - DAY",
+      "location": "University Campus Quad",
+      "extras": [],
+      "actors": [
+        {
+          "actor_name": "Maya",
+          "character_name": "Maya",
+          "call_time": "TBD",
+          "wrap_time": "TBD"
+        }
+      ],
+      "estimated_duration": "1 minute",
+      "time_of_day": "DAY",
+      "shooting_date": "TBD",
+      "call_time": "TBD"
+    },
+    {
+      "scene_number": 5,
+      "scene_title": "INT. PROFESSOR RHODES' OFFICE - DAY",
+      "location": "Professor Rhodes' Office",
+      "extras": [],
+      "actors": [
+        {
+          "actor_name": "Professor Rhodes",
+          "character_name": "Professor Rhodes",
+          "call_time": "TBD",
+          "wrap_time": "TBD"
+        },
+        {
+          "actor_name": "Maya",
+          "character_name": "Maya",
+          "call_time": "TBD",
+          "wrap_time": "TBD"
+        }
+      ],
+      "estimated_duration": "1 minute",
+      "time_of_day": "DAY",
+      "shooting_date": "TBD",
+      "call_time": "TBD"
+    },
+    {
+      "scene_number": 6,
+      "scene_title": "INT. GOVERNMENT FACILITY - BRIEFING ROOM - DAY",
+      "location": "Government Facility - Briefing Room",
+      "extras": [
+        {
+          "role": "Analysts",
+          "count": "Multiple",
+          "call_time": "TBD",
+          "wrap_time": "TBD"
+        }
+      ],
+      "actors": [
+        {
+          "actor_name": "Agent Torres",
+          "character_name": "AGENT TORRES",
+          "call_time": "TBD",
+          "wrap_time": "TBD"
+        }
+      ],
+      "estimated_duration": "1 minute",
+      "time_of_day": "DAY",
+      "shooting_date": "TBD",
+      "call_time": "TBD"
+    },
+    {
+      "scene_number": 7,
+      "scene_title": "EXT. DESERT HIGHWAY - DAY",
+      "location": "Desert Highway",
+      "extras": [],
+      "actors": [
+        {
+          "actor_name": "Maya",
+          "character_name": "Maya",
+          "call_time": "TBD",
+          "wrap_time": "TBD"
+        }
+      ],
+      "estimated_duration": "1 minute",
+      "time_of_day": "DAY",
+      "shooting_date": "TBD",
+      "call_time": "TBD"
+    }
+  ],
+  "actor_schedule_summary": {
+    "Maya Chen": {
+      "scenes": [
+        2
+      ],
+      "total_scenes": 1,
+      "shooting_dates": [
+        "TBD"
+      ],
+      "character": "Maya Chen"
+    },
+    "Maya": {
+      "scenes": [
+        3,
+        4,
+        5,
+        7,
+        8,
+        9
+      ],
+      "total_scenes": 6,
+      "shooting_dates": [
+        "TBD",
+        "TBD",
+        "TBD",
+        "TBD",
+        "TBD",
+        "TBD"
+      ],
+      "character": "Maya"
+    },
+    "Alex": {
+      "scenes": [
+        3
+      ],
+      "total_scenes": 1,
+      "shooting_dates": [
+        "TBD"
+      ],
+      "character": "Alex"
+    },
+    "Professor Rhodes": {
+      "scenes": [
+        5
+      ],
+      "total_scenes": 1,
+      "shooting_dates": [
+        "TBD"
+      ],
+      "character": "Professor Rhodes"
+    },
+    "Agent Torres": {
+      "scenes": [
+        6
+      ],
+      "total_scenes": 1,
+      "shooting_dates": [
+        "TBD"
+      ],
+      "character": "AGENT TORRES"
+    },
+    "Rhodes": {
+      "scenes": [
+        8
+      ],
+      "total_scenes": 1,
+      "shooting_dates": [
+        "TBD"
+      ],
+      "character": "Rhodes"
+    }
+  },
+  "location_summary": {
+    "Abandoned Radio Station": {
+      "scenes": [
+        1
+      ],
+      "time_requirements": [
+        "NIGHT"
+      ]
+    },
+    "Radio Station Control Room": {
+      "scenes": [
+        2
+      ],
+      "time_requirements": [
+        "NIGHT"
+      ]
+    },
+    "Maya's Apartment - Living Room": {
+      "scenes": [
+        3
+      ],
+      "time_requirements": [
+        "DAY"
+      ]
+    },
+    "University Campus Quad": {
+      "scenes": [
+        4
+      ],
+      "time_requirements": [
+        "DAY"
+      ]
+    },
+    "Professor Rhodes' Office": {
+      "scenes": [
+        5
+      ],
+      "time_requirements": [
+        "DAY"
+      ]
+    },
+    "Government Facility - Briefing Room": {
+      "scenes": [
+        6
+      ],
+      "time_requirements": [
+        "DAY"
+      ]
+    },
+    "Desert Highway": {
+      "scenes": [
+        7
+      ],
+      "time_requirements": [
+        "DAY"
+      ]
+    },
+    "Maya's Car": {
+      "scenes": [
+        8
+      ],
+      "time_requirements": [
+        "DAY"
+      ]
+    },
+    "Radio Station Parking Area": {
+      "scenes": [
+        9
+      ],
+      "time_requirements": [
+        "DUSK"
+      ]
+    }
+  },
+  "extras_summary": {
+    "Analysts": {
+      "scenes": [
+        6
+      ],
+      "location": "Government Facility - Briefing Room",
+      "description": "Multiple analysts for briefing room scene"
+    }
+  }
+}

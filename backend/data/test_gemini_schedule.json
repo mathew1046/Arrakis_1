@@ -1,0 +1,117 @@
+{
+  "error": "Gemini API key not provided. Set GEMINI_API_KEY environment variable.",
+  "mock_response": true,
+  "optimized_schedule": {
+    "scheduling_strategy": "Mock AI-optimized schedule - Location clustering with time-of-day optimization",
+    "total_shooting_days": 3,
+    "daily_schedules": [
+      {
+        "day": 1,
+        "date": "TBD",
+        "location_focus": "Radio Station Complex",
+        "scenes": [
+          {
+            "scene_number": 9,
+            "scene_title": "EXT. RADIO STATION - PARKING AREA - DUSK",
+            "location": "Radio Station Parking Area",
+            "time_of_day": "DUSK",
+            "estimated_duration_minutes": 60,
+            "actors_needed": [
+              "Maya"
+            ],
+            "extras_needed": [],
+            "call_time": "17:00",
+            "estimated_wrap": "18:00",
+            "setup_notes": "Golden hour lighting setup required"
+          },
+          {
+            "scene_number": 1,
+            "scene_title": "EXT. ABANDONED RADIO STATION - NIGHT",
+            "location": "Abandoned Radio Station",
+            "time_of_day": "NIGHT",
+            "estimated_duration_minutes": 60,
+            "actors_needed": [],
+            "extras_needed": [],
+            "call_time": "19:00",
+            "estimated_wrap": "20:00",
+            "setup_notes": "Night lighting and atmospheric effects"
+          },
+          {
+            "scene_number": 2,
+            "scene_title": "INT. RADIO STATION - CONTROL ROOM - NIGHT",
+            "location": "Radio Station Control Room",
+            "time_of_day": "NIGHT",
+            "estimated_duration_minutes": 60,
+            "actors_needed": [
+              "Maya Chen"
+            ],
+            "extras_needed": [],
+            "call_time": "20:30",
+            "estimated_wrap": "21:30",
+            "setup_notes": "Interior lighting setup, practical radio equipment"
+          }
+        ],
+        "daily_summary": {
+          "total_scenes": 3,
+          "total_duration_minutes": 180,
+          "primary_actors": [
+            "Maya",
+            "Maya Chen"
+          ],
+          "location_changes": 2,
+          "special_requirements": [
+            "Night shooting equipment",
+            "Atmospheric effects"
+          ]
+        }
+      }
+    ],
+    "actor_schedules": {
+      "Maya": {
+        "total_working_days": 2,
+        "scenes": [
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "schedule_notes": "Primary character - appears in most scenes"
+      },
+      "Maya Chen": {
+        "total_working_days": 1,
+        "scenes": [
+          2
+        ],
+        "schedule_notes": "Single scene appearance"
+      }
+    },
+    "location_schedule": {
+      "Radio Station Complex": {
+        "days_needed": [
+          1
+        ],
+        "total_scenes": 3,
+        "setup_requirements": "Lighting equipment, atmospheric effects, practical radio gear"
+      }
+    },
+    "optimization_benefits": [
+      "Grouped Radio Station scenes for efficient setup",
+      "Natural time progression (DUSK → NIGHT)",
+      "Minimized location changes",
+      "Optimized actor schedules"
+    ],
+    "potential_risks": [
+      "Weather dependency for outdoor scenes",
+      "Night shooting may require overtime pay",
+      "Equipment availability for atmospheric effects"
+    ]
+  },
+  "generation_info": {
+    "generated_at": "2025-10-05T14:50:34.240440",
+    "input_scenes": 9,
+    "ai_model": "gemini-pro",
+    "prompt_length": 4778
+  }
+}

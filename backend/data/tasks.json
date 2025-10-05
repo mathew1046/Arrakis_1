@@ -1,0 +1,86 @@
+[
+  {
+    "id": "1",
+    "title": "Set up camera equipment",
+    "description": "Prepare and test all camera equipment for Scene 1",
+    "status": "todo",
+    "assignee": "James Wilson",
+    "assigneeId": "4",
+    "dueDate": "2024-10-15",
+    "priority": "high",
+    "category": "Equipment",
+    "estimatedHours": 4
+  },
+  {
+    "id": "2",
+    "title": "Review script changes",
+    "description": "Review and approve latest script revisions",
+    "status": "in_progress",
+    "assignee": "Emma Rodriguez",
+    "assigneeId": "3",
+    "dueDate": "2024-10-12",
+    "priority": "high",
+    "category": "Script",
+    "estimatedHours": 2
+  },
+  {
+    "id": "3",
+    "title": "VFX shot planning",
+    "description": "Plan VFX shots for action sequence",
+    "status": "todo",
+    "assignee": "Lisa Park",
+    "assigneeId": "5",
+    "dueDate": "2024-10-18",
+    "priority": "medium",
+    "category": "VFX",
+    "estimatedHours": 8
+  },
+  {
+    "id": "4",
+    "title": "Location scouting report",
+    "description": "Complete location scouting report for outdoor scenes",
+    "status": "done",
+    "assignee": "Michael Chen",
+    "assigneeId": "2",
+    "dueDate": "2024-10-10",
+    "priority": "medium",
+    "category": "Pre-production",
+    "estimatedHours": 6
+  },
+  {
+    "id": "5",
+    "title": "Costume fittings",
+    "description": "Schedule and conduct costume fittings for main cast",
+    "status": "in_progress",
+    "assignee": "James Wilson",
+    "assigneeId": "4",
+    "dueDate": "2024-10-16",
+    "priority": "medium",
+    "category": "Wardrobe",
+    "estimatedHours": 5
+  },
+  {
+    "id": "6",
+    "title": "Budget review meeting",
+    "description": "Weekly budget review with department heads",
+    "status": "todo",
+    "assignee": "Sarah Johnson",
+    "assigneeId": "1",
+    "dueDate": "2024-10-14",
+    "priority": "high",
+    "category": "Budget",
+    "estimatedHours": 2
+  },
+  {
+    "id": "7",
+    "title": "Test Camera Setup",
+    "description": "Set up camera equipment for Scene 1",
+    "status": "in_progress",
+    "assignee": "Sarah Johnson",
+    "assigneeId": "1",
+    "dueDate": "2024-12-15",
+    "priority": "high",
+    "category": "Equipment",
+    "estimatedHours": 4
+  }
+]

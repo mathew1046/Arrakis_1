@@ -1,0 +1,54 @@
+{
+  "title": "Analyzed Script",
+  "scenes": [
+    {
+      "characters": [],
+      "day_night": "NIGHT",
+      "description": "An abandoned radio station's crumbling tower is revealed against a stormy night sky, periodically illuminated by lightning.",
+      "estimatedDuration": 1,
+      "estimated_runtime_minutes": 1,
+      "extras": [],
+      "id": "1",
+      "int_ext": "EXT",
+      "location": "Abandoned Radio Station",
+      "makeup_hair": [],
+      "mood_tone": "ominous",
+      "number": "1",
+      "props": [
+        "radio tower"
+      ],
+      "scene_complexity": "Low",
+      "scene_description": "An abandoned radio station's crumbling tower is revealed against a stormy night sky, periodically illuminated by lightning.",
+      "scene_number": 1,
+      "scene_status": "Not Shot",
+      "set_dressing": [
+        "crumbling structure"
+      ],
+      "sound_requirements": [
+        "thunder"
+      ],
+      "special_equipment": [],
+      "status": "Not Shot",
+      "stunts_vfx": [],
+      "timeOfDay": "NIGHT",
+      "title": "EXT. ABANDONED RADIO STATION - NIGHT",
+      "vehicles_animals_fx": [
+        "stormy sky",
+        "lightning"
+      ],
+      "vfx": true,
+      "vfx_details": "Lightning and stormy sky effects.",
+      "vfx_required": true,
+      "wardrobe": []
+    }
+  ],
+  "totalScenes": 1,
+  "totalEstimatedDuration": 1,
+  "vfxScenes": 1,
+  "version": "1.0.0",
+  "lastModified": "2025-10-06",
+  "locations": [
+    "Abandoned Radio Station"
+  ],
+  "characters": []
+}

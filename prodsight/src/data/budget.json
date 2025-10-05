@@ -1,0 +1,102 @@
+{
+  "total": 2500000,
+  "spent": 1850000,
+  "remaining": 650000,
+  "categories": [
+    {
+      "name": "Cast",
+      "budgeted": 800000,
+      "spent": 750000,
+      "remaining": 50000
+    },
+    {
+      "name": "Crew",
+      "budgeted": 600000,
+      "spent": 520000,
+      "remaining": 80000
+    },
+    {
+      "name": "Equipment",
+      "budgeted": 400000,
+      "spent": 380000,
+      "remaining": 20000
+    },
+    {
+      "name": "Locations",
+      "budgeted": 300000,
+      "spent": 200000,
+      "remaining": 100000
+    },
+    {
+      "name": "Post-Production",
+      "budgeted": 250000,
+      "spent": 0,
+      "remaining": 250000
+    },
+    {
+      "name": "Marketing",
+      "budgeted": 150000,
+      "spent": 0,
+      "remaining": 150000
+    }
+  ],
+  "history": [
+    {
+      "date": "2024-09-01",
+      "amount": 200000,
+      "category": "Cast",
+      "description": "Lead actor contract"
+    },
+    {
+      "date": "2024-09-05",
+      "amount": 150000,
+      "category": "Equipment",
+      "description": "Camera rental - Month 1"
+    },
+    {
+      "date": "2024-09-10",
+      "amount": 80000,
+      "category": "Crew",
+      "description": "DP and key crew - Week 1"
+    },
+    {
+      "date": "2024-09-15",
+      "amount": 120000,
+      "category": "Locations",
+      "description": "Studio rental - Month 1"
+    },
+    {
+      "date": "2024-09-20",
+      "amount": 300000,
+      "category": "Cast",
+      "description": "Supporting cast contracts"
+    },
+    {
+      "date": "2024-09-25",
+      "amount": 100000,
+      "category": "Crew",
+      "description": "Additional crew - Week 2"
+    },
+    {
+      "date": "2024-10-01",
+      "amount": 250000,
+      "category": "Cast",
+      "description": "Final cast payments"
+    },
+    {
+      "date": "2024-10-05",
+      "amount": 150000,
+      "category": "Equipment",
+      "description": "Additional equipment rental"
+    }
+  ],
+  "forecast": {
+    "projectedTotal": 2650000,
+    "overBudget": 150000,
+    "riskFactors": [
+      "Equipment rental extending beyond planned dates",
+      "Potential overtime costs for crew",
+      "Weather delays affecting location shoots"
+    ]
+  }
+}
